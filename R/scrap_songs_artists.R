@@ -1,6 +1,6 @@
 #' Scrap Artists and songs information
 #'
-#' This function allow you to get the information aboute artists and songs from Genius API
+#' This function allow you to get the information aboute artists and songs from Genius API. You need to have package geniusr installed
 #'
 #' @param x A list of artists names
 #'
@@ -20,6 +20,7 @@
 #' @export
 
 scrap_songs_artists <- function(x) {
+  require(geniusr)
   artistes_total<-as.data.frame(matrix(0, ncol = 3, nrow = 0))
   colnames(artistes_total)<-c("artist_id","artist_name","artist_url")
   len_artistes<-length(x)
