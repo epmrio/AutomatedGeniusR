@@ -24,7 +24,7 @@ scrap_songs_artists <- function(x) {
   artistes_total<-as.data.frame(matrix(0, ncol = 3, nrow = 0))
   colnames(artistes_total)<-c("artist_id","artist_name","artist_url")
   len_artistes<-length(x)
-  for (artiste in liste_artistes) {
+  for (artiste in x) {
     print(paste0("Il reste ",len_artistes," artistes à récupérer avant de scrapper les chansons"))
     try(data<-search_artist(artiste,n_results = 100))
     data<-data[-which(data$artist_name!=artiste),]
