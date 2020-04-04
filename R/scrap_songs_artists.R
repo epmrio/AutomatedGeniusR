@@ -21,12 +21,14 @@
 
 scrap_songs_artists <- function(x) {
   require(geniusr)
+  require(stringr)
   artistes_total<-as.data.frame(matrix(0, ncol = 3, nrow = 0))
   colnames(artistes_total)<-c("artist_id","artist_name","artist_url")
   len_artistes<-length(x)
   for (artiste in x) {
+    artiste2<-str_replace_all(artiste," ","-")
     print(paste0("Il reste ",len_artistes," artistes à récupérer avant de scrapper les chansons"))
-    try(data<-search_artist(artiste,n_results = 100))
+    try(data<-search_artist(artiste2,n_results = 100))
     data<-data[-which(data$artist_name!=artiste),]
     artistes_total<-rbind(artistes_total,data)
     len_artistes=len_artistes-1
