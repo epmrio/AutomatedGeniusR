@@ -42,13 +42,20 @@ scrap_songs_artists <- function(x) {
   colnames(id_annot_total)<-c("artist_id","annotation_count_artist","nombre_songs_by_artist")
   for (id in liste_id) {
     print(paste0("Récupération des chansons de ",len_id," artistes"))
+    print(1)
     try(songs_artistes<-get_artist_songs(id))
-    songs_artistes$nombre_songs_by_artist<-nrow(songs_artistes)
-    songs_total<-rbind(songs_total,songs_artistes)
+    print(2)
+    try(songs_artistes$nombre_songs_by_artist<-nrow(songs_artistes))
+    print(3)
+    try(songs_total<-rbind(songs_total,songs_artistes))
+    print(4)
     #on rempli l'id_annot_total
-    songs_artistes$annotation_count_artist<-sum(songs_artistes$annotation_count)
-    id_annot_brouillon<-songs_artistes[,c("artist_id","annotation_count_artist","nombre_songs_by_artist")]
-    id_annot_total<-rbind(id_annot_total,id_annot_brouillon)
+    try(songs_artistes$annotation_count_artist<-sum(songs_artistes$annotation_count))
+    print(5)
+    try(id_annot_brouillon<-songs_artistes[,c("artist_id","annotation_count_artist","nombre_songs_by_artist")])
+    print(6)
+    try(id_annot_total<-rbind(id_annot_total,id_annot_brouillon))
+    print(7)
     len_id<-len_id-1
   }
   id_songs<-songs_total$song_id
