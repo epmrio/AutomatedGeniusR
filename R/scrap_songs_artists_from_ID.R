@@ -56,10 +56,10 @@ scrap_songs_artists_from_ID <- function(x) {
     songs_meta_total<-rbind(songs_meta_total,song_meta)
     len_songs_meta<-len_songs_meta-1
   }
-  len_infoscomp<-length(liste_id)
+  len_infoscomp<-length(x)
   info_comp_total<-as.data.frame(matrix(0,ncol = 5,nrow = 0))
   colnames(info_comp_total)<-c("artist_id","artist_name","artist_url","artist_image_url","followers_count")
-  for (art_id in liste_id) {
+  for (art_id in x) {
     print(paste0("Recuperation d'informations complémentaires pour ",len_infoscomp," artistes. C'est presque fini"))
     try(art_meta<-get_artist_meta(art_id))
     info_comp_total<-rbind(info_comp_total,art_meta)
