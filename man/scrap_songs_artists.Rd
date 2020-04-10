@@ -13,7 +13,7 @@ scrap_songs_artists(x)
 A dataframe
 }
 \description{
-This function allow you to get the information aboute artists and songs from Genius API
+This function allow you to get the information aboute artists and songs from Genius API. You need to have package geniusr installed
 }
 \examples{
 
