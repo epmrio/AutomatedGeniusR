@@ -71,7 +71,7 @@ scrap_songs_artists_from_ID <- function(x) {
   # colonne des views total
   songs_meta_total$pageviews[is.na(songs_meta_total$pageviews)]<-0
   songs_meta_total$views_artists<-NA
-  for (artist_identifiant in liste_id) {
+  for (artist_identifiant in x) {
     songs_meta_total$views_artists[which(songs_meta_total$artist_id == artist_identifiant)]<-sum(songs_meta_total$pageviews[which(songs_meta_total$artist_id == artist_identifiant)])
   }
   print("Le processus de récupération est terminé")
