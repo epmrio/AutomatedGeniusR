@@ -26,7 +26,7 @@ create_featuring_network <- function(x) {
   base$featuring<-lapply(base$song_name,str_extract,pattern="\\(Ft\\.\\D[A-Za-z0-9\\D&éèàç@â]+")
   base<-base[-which(is.na(base$featuring)),]
   base$featuring<-as.character(base$featuring)
-  base$featuring<-str_replace_all(base$featuring,"\\D\\(Fra\\)|\\D\\(ES\\)|\\D\\(FRA\\)|\\D\\(FR\\)","")
+  # base$featuring<-str_replace_all(base$featuring,"\\D\\(Fra\\)|\\D\\(ES\\)|\\D\\(FRA\\)|\\D\\(FR\\)","")
   base$featuring<-str_replace_all(base$featuring,"\\(Ft.\\D","")
   base$featuring<-str_replace_all(base$featuring,"[\\)]$","")
   liste_artistes<-base$artist_name.x[which(duplicated(base$artist_name.x)==FALSE)]
