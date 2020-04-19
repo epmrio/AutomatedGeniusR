@@ -47,6 +47,7 @@ create_featuring_network <- function(x) {
     featuring_network<-rbind(featuring_network,feat_fly)
   }
   nodes_table<-x[which(x$artist_name.x %in% liste_artistes),c("artist_name.x","followers_count","annotation_count_artist","nombre_songs_by_artist","views_artists","Pays","Genre","Groupe_Solo")]
+  nodes_table<-nodes_table[-which(duplicated(nodes_table$artist_name.x)==TRUE),]
   edges_table<-featuring_network
   return(list(edges_table,nodes_table))
 }
