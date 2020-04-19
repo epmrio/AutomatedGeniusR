@@ -48,7 +48,7 @@ create_featuring_network <- function(x) {
   }
   nodes_table<-x[which(x$artist_name.x %in% liste_artistes),c("artist_name.x","followers_count","annotation_count_artist","nombre_songs_by_artist","views_artists","Pays","Genre","Groupe_Solo")]
   nodes_table<-nodes_table[-which(duplicated(nodes_table$artist_name.x)==TRUE),]
-  colnames(nodes_table)<-c("Label","followers_count","annotation_count_artist","nombre_songs_by_artist","views_artists","Pays","Genre","Groupe_Solo")
+  colnames(nodes_table)<-c("Id","followers_count","annotation_count_artist","nombre_songs_by_artist","views_artists","Pays","Genre","Groupe_Solo")
   edges_table<-featuring_network
   return(list(edges_table,nodes_table))
 }
