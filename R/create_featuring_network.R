@@ -46,6 +46,42 @@ create_featuring_network <- function(x) {
     feat_fly$Target<-liste_feat_par_artiste[,1]
     featuring_network<-rbind(featuring_network,feat_fly)
   }
+  # j'ajoute cette nouvelle partie du code à la suite du premier :
+  liste_chansons<-base$song_name[which(duplicated(base$song_name)==FALSE)]
+  lenchanson<-length(liste_chansons)
+  for (song in liste_chansons) {
+    print(lenchanson)
+    feat_par_chanson<-base$featuring[which(base$song_name == song)]
+    feat_par_chanson_mix<-str_replace_all(feat_par_chanson," & ","@@@")
+    feat_par_chanson_mix<-str_replace_all(feat_par_chanson_mix,", ","@@@")
+    liste_feat_par_chanson<-as.data.frame.list((str_split(feat_par_chanson_mix,"@@@")))
+    colnames(liste_feat_par_chanson)<-"X"
+    if (nrow(liste_feat_par_chanson) > 1) {
+      feat_fly<-as.data.frame(matrix(0,ncol = 2,nrow = (nrow(liste_feat_par_chanson))^2))
+      colnames(feat_fly)<-c("Source","Target")
+      a=1
+      b=nrow(liste_feat_par_chanson)
+      for (artiste in liste_feat_par_chanson$X) {
+        feat_fly$Source[a:b]<-artiste
+        feat_fly$Target[a:b]<-paste0(liste_feat_par_chanson$X)
+        a=a+nrow(liste_feat_par_chanson)
+        b=b+nrow(liste_feat_par_chanson)
+      }
+      feat_fly<-feat_fly[-which(feat_fly$Source == feat_fly$Target),]
+      # Je dois ajouter un morceau ici pour virer les doublons
+      # feat_fly$mix<-as.character(strsplit(unlist(paste0(feat_fly$Source,feat_fly$Target)),""))
+      # for (element in feat_fly$mix) {
+      #   element<-element[order(element)]
+      # }
+      # feat_fly$mix<-unlist(paste0(feat_fly$mix))
+      # feat_fly<-feat_fly[-which(duplicated(feat_fly$mix) == TRUE)]
+    } else {
+      feat_fly<-as.data.frame(matrix(0,ncol = 2,nrow = 0))
+      colnames(feat_fly)<-c("Source","Target")
+    }
+    featuring_network<-rbind(featuring_network,feat_fly)
+    lenchanson=lenchanson-1
+  }
   nodes_table<-x[which(x$artist_name.x %in% liste_artistes),c("artist_name.x","followers_count","annotation_count_artist","nombre_songs_by_artist","views_artists","Pays","Genre","Groupe_Solo")]
   nodes_table<-nodes_table[-which(duplicated(nodes_table$artist_name.x)==TRUE),]
   colnames(nodes_table)<-c("Id","followers_count","annotation_count_artist","nombre_songs_by_artist","views_artists","Pays","Genre","Groupe_Solo")
