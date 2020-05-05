@@ -67,14 +67,21 @@ create_featuring_network <- function(x) {
         a=a+nrow(liste_feat_par_chanson)
         b=b+nrow(liste_feat_par_chanson)
       }
-      feat_fly<-feat_fly[-which(feat_fly$Source == feat_fly$Target),]
+      # feat_fly<-feat_fly[-which(feat_fly$Source == feat_fly$Target),]
       # Je dois ajouter un morceau ici pour virer les doublons
-      # feat_fly$mix<-as.character(strsplit(unlist(paste0(feat_fly$Source,feat_fly$Target)),""))
-      # for (element in feat_fly$mix) {
-      #   element<-element[order(element)]
-      # }
-      # feat_fly$mix<-unlist(paste0(feat_fly$mix))
-      # feat_fly<-feat_fly[-which(duplicated(feat_fly$mix) == TRUE)]
+      require(rlist)
+      liste_remove<-c()
+      a=as.numeric(length(unique(feat_fly$Source)))
+      counter=1
+      start=2
+      range=a-2
+      while (counter != a) {
+        liste_remove<-list.append(liste_remove,c(start:(start+range)))
+        start=start+a+1
+        range=range-1
+        counter=counter+1
+      }
+      feat_fly<-feat_fly[liste_remove,]
     } else {
       feat_fly<-as.data.frame(matrix(0,ncol = 2,nrow = 0))
       colnames(feat_fly)<-c("Source","Target")
