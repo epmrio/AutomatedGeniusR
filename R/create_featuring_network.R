@@ -93,11 +93,11 @@ create_featuring_network <- function(x) {
   nodes_table<-nodes_table[-which(duplicated(nodes_table$artist_name.x)==TRUE),]
   colnames(nodes_table)<-c("Id","followers_count","annotation_count_artist","nombre_songs_by_artist","views_artists","Pays","Genre","Groupe_Solo")
   edges_table<-featuring_network
-  nodes_table$Id<-str_replace_all(nodes$Id,"\\s","-")
-  edges_table$Source<-as.character(edges$Source)
-  edges_table$Target<-as.character(edges$Target)
-  edges_table$Source<-str_replace_all(edges$Source,"\\s","-")
-  edges_table$Target<-str_replace_all(edges$Target,"\\s","-")
+  nodes_table$Id<-str_replace_all(nodes_table$Id,"\\s","-")
+  edges_table$Source<-as.character(edges_table$Source)
+  edges_table$Target<-as.character(edges_table$Target)
+  edges_table$Source<-str_replace_all(edges_table$Source,"\\s","-")
+  edges_table$Target<-str_replace_all(edges_table$Target,"\\s","-")
   
   return(list(edges_table,nodes_table))
 }
