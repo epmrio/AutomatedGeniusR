@@ -30,6 +30,8 @@ scrap_songs_artists <- function(x) {
     artiste2<-str_to_lower(artiste)
     artiste2<-str_replace_all(artiste2," ","-")
     artiste2<-str_replace_all(artiste2,"\\s","-")
+    artiste2<-str_replace_all(artiste2,"\\(","")
+    artiste2<-str_replace_all(artiste2,"\\)","")
     artiste2<-str_replace_all(artiste2,"\\’","")
     artiste2<-str_replace_all(artiste2,"é","e")
     artiste2<-str_replace_all(artiste2,"è","e")
