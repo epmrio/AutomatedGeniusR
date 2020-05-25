@@ -89,9 +89,9 @@ create_featuring_network <- function(x) {
     featuring_network<-rbind(featuring_network,feat_fly)
     lenchanson=lenchanson-1
   }
-  nodes_table<-x[which(x$artist_name.x %in% liste_artistes),c("artist_name.x","followers_count","annotation_count_artist","nombre_songs_by_artist","views_artists","Pays","Genre","Groupe_Solo")]
+  nodes_table<-x[which(x$artist_name.x %in% liste_artistes),c("artist_name.x","followers_count","annotation_count_artist","nombre_songs_by_artist","views_artists","Pays","Genre","Groupe_Solo","count_feat","moyenne_date","mediane_date")]
   nodes_table<-nodes_table[-which(duplicated(nodes_table$artist_name.x)==TRUE),]
-  colnames(nodes_table)<-c("Id","followers_count","annotation_count_artist","nombre_songs_by_artist","views_artists","Pays","Genre","Groupe_Solo")
+  colnames(nodes_table)<-c("Id","followers_count","annotation_count_artist","nombre_songs_by_artist","views_artists","Pays","Genre","Groupe_Solo","count_feat","moyenne_date","mediane_date")
   edges_table<-featuring_network
   nodes_table$Id<-str_replace_all(nodes_table$Id,"\\s","-")
   nodes_table$Id<-str_replace_all(nodes_table$Id,"\\'","")
