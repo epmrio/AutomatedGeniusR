@@ -75,5 +75,9 @@ GetSongsArtistsID <- function(x) {
     songs_meta_total$views_artists[which(songs_meta_total$artist_id == artist_identifiant)]<-sum(songs_meta_total$song_pageviews[which(songs_meta_total$artist_id == artist_identifiant)])
   }
   print("Le processus de récupération est terminé")
+  songs_meta_total$artist_name.y<-NULL
+  songs_meta_total$artist_url.y<-NULL
+  names(songs_meta_total)[match("artist_name.x",names(songs_meta_total))] <- "artist_name"
+  names(songs_meta_total)[match("artist_url.x",names(songs_meta_total))] <- "artist_url"
   return(songs_meta_total)
 }
