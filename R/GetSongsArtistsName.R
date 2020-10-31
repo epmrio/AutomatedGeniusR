@@ -13,13 +13,13 @@
 #' ## Get a dataset from the following list :
 #' artists_list <- c("artist-1", "artist-2")
 #' # Use the Function to retrieve information
-#' artists_info <- scrap_songs_artists(artists_list)
+#' artists_info <- GetSongsArtistsName(artists_list)
 #'
 #' }
 #'
 #' @export
 
-scrap_songs_artists <- function(x) {
+GetSongsArtistsName <- function(x) {
   require(geniusr)
   require(stringr)
   artistes_total<-as.data.frame(matrix(0, ncol = 3, nrow = 0))

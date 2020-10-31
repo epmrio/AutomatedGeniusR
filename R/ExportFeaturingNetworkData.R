@@ -11,7 +11,7 @@
 #' \dontrun{
 #'
 #' ## Get a network of featuring between artists :
-#' network <- create_featuring_network(base)
+#' network <- ExportFeaturingNetworkData(base)
 #' # Export the network to your computer and remove the first column (rownames)
 #' write_featuring_dataset_list<-(network)
 #'
@@ -19,7 +19,7 @@
 #'
 #' @export
 
-write_featuring_dataset_list <- function(dataframes_list) {
+ExportFeaturingNetworkData <- function(dataframes_list) {
   path_1<-getwd()
   name<-c("edges_table","nodes_table")
   compteur<-1

@@ -13,13 +13,13 @@
 #' ## Get a dataset from the following list :
 #' ID_list <- c("ID-1", "ID-2")
 #' # Use the Function to retrieve information
-#' artists_info <- scrap_songs_artists_from_ID(ID_list)
+#' artists_info <- GetSongsArtistsID(ID_list)
 #'
 #' }
 #'
 #' @export
 
-scrap_songs_artists_from_ID <- function(x) {
+GetSongsArtistsID <- function(x) {
   require(geniusr)
   require(stringr)
   len_id<-length(x)

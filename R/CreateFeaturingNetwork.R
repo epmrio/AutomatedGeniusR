@@ -11,7 +11,7 @@
 #' \dontrun{
 #'
 #' ## Get a network of the following df :
-#' feat_net<-create_featuring_network(dataframe)
+#' feat_net<-CreateFeaturingNetwork(dataframe)
 #' # Export the network to your computer and remove the first column (rownames)
 #' write.csv(feat_net, "/PATH_TO_DIRECTORY/users_network.csv", rownames = FALSE)
 #'
@@ -20,7 +20,7 @@
 #' @export
 
 # Création de la table des liens/noeud
-create_featuring_network <- function(x) {
+CreateFeaturingNetwork <- function(x) {
   base<-x[,c("artist_name.x","song_name")]
   require(stringr)
   base$featuring<-lapply(base$song_name,str_extract,pattern="\\(Ft\\.\\D[A-Za-z0-9\\D&éèàç@â]+")

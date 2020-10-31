@@ -13,7 +13,7 @@
 #' \dontrun{
 #'
 #' ## all the lyrics of multiple artists :
-#' lyrics<-recuperation_chansons(corpus,list_of_artists_id,feat_exclude=F)
+#' lyrics<-RetreiveSongs(corpus,list_of_artists_id,feat_exclude=F)
 #'
 #' }
 #'
@@ -22,7 +22,7 @@
 # X correspond à un data frame récupéré par les fonction de AutomatedGeniusR qui comporte une colonne id d'artiste, 
 # une colonne Chanson et une colone id chanson. Y correspond à une liste d'ID d'artistes et la fonction feat_exclude exclu les feat de la récup
 # (par défaut == TRUE)
-recuperation_chansons <- function(x,y,feat_exclude=T) {
+RetreiveSongs <- function(x,y,feat_exclude=T) {
   require(geniusr)
   df_final<-as.data.frame(matrix(0,nrow = 0,ncol = 6))
   colnames(df_final)<-c("line","section_name","section_artist","song_name","artist_name","song_id")
