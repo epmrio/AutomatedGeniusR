@@ -89,13 +89,13 @@ CreateFeaturingNetwork <- function(x) {
     featuring_network<-rbind(featuring_network,feat_fly)
     lenchanson=lenchanson-1
   }
-  nodes_table<-x[which(x$artist_name %in% liste_artistes),c("artist_name","followers_count","annotation_count_artist","nombre_songs_by_artist","views_artists","Pays","Genre","Groupe_Solo","count_feat","moyenne_date","moyenne_date_par_mois","moyenne_date_par_annee","mediane_date","mediane_date_par_mois","mediane_date_par_annee")]
+  nodes_table<-x[which(x$artist_name %in% liste_artistes),c("artist_id","artist_name","artist_followers_count","annotation_count_artist","number_songs_by_artist","views_artists")]
   nodes_table<-nodes_table[-which(duplicated(nodes_table$artist_name)==TRUE),]
-  colnames(nodes_table)<-c("Id","followers_count","annotation_count_artist","nombre_songs_by_artist","views_artists","Pays","Genre","Groupe_Solo","count_feat","moyenne_date","moyenne_date_par_mois","moyenne_date_par_annee","mediane_date","mediane_date_par_mois","mediane_date_par_annee")
+  colnames(nodes_table)<-c("artist_id","artist_name","artist_followers_count","annotation_count_artist","number_songs_by_artist","views_artists")
   edges_table<-featuring_network
-  nodes_table$Id<-str_replace_all(nodes_table$Id,"\\s","-")
-  nodes_table$Id<-str_replace_all(nodes_table$Id,"\\'","")
-  nodes_table$Id<-str_replace_all(nodes_table$Id,"\\’","")
+  nodes_table$artist_id<-str_replace_all(nodes_table$artist_id,"\\s","-")
+  nodes_table$artist_id<-str_replace_all(nodes_table$artist_id,"\\'","")
+  nodes_table$artist_id<-str_replace_all(nodes_table$artist_id,"\\’","")
   edges_table$Source<-as.character(edges_table$Source)
   edges_table$Target<-as.character(edges_table$Target)
   edges_table$Source<-str_replace_all(edges_table$Source,"\\s","-")
