@@ -21,7 +21,7 @@
 
 # Création de la table des liens/noeud
 CreateFeaturingNetwork <- function(x) {
-  base<-x[,c("artist_name.x","song_name")]
+  base<-x[,c("artist_name","song_name")]
   require(stringr)
   base$featuring<-lapply(base$song_name,str_extract,pattern="\\(Ft\\.\\D[A-Za-z0-9\\D&éèàç@â]+")
   base<-base[-which(is.na(base$featuring)),]
@@ -29,11 +29,11 @@ CreateFeaturingNetwork <- function(x) {
   # base$featuring<-str_replace_all(base$featuring,"\\D\\(Fra\\)|\\D\\(ES\\)|\\D\\(FRA\\)|\\D\\(FR\\)","")
   base$featuring<-str_replace_all(base$featuring,"\\(Ft.\\D","")
   base$featuring<-str_replace_all(base$featuring,"[\\)]$","")
-  liste_artistes<-base$artist_name.x[which(duplicated(base$artist_name.x)==FALSE)]
+  liste_artistes<-base$artist_name[which(duplicated(base$artist_name)==FALSE)]
   featuring_network<-as.data.frame(matrix(0,ncol=2,nrow=0))
   colnames(featuring_network)<-c("Source","Target")
   for (artiste in liste_artistes) {
-    feat_par_artiste<-base$featuring[which(base$artist_name.x == artiste)]
+    feat_par_artiste<-base$featuring[which(base$artist_name == artiste)]
     feat_par_artiste_mix<-paste0(feat_par_artiste,collapse = "@@@")
     feat_par_artiste_mix<-str_replace_all(feat_par_artiste_mix," & ","@@@")
     feat_par_artiste_mix<-str_replace_all(feat_par_artiste_mix,", ","@@@")
@@ -89,8 +89,8 @@ CreateFeaturingNetwork <- function(x) {
     featuring_network<-rbind(featuring_network,feat_fly)
     lenchanson=lenchanson-1
   }
-  nodes_table<-x[which(x$artist_name.x %in% liste_artistes),c("artist_name.x","followers_count","annotation_count_artist","nombre_songs_by_artist","views_artists","Pays","Genre","Groupe_Solo","count_feat","moyenne_date","moyenne_date_par_mois","moyenne_date_par_annee","mediane_date","mediane_date_par_mois","mediane_date_par_annee")]
-  nodes_table<-nodes_table[-which(duplicated(nodes_table$artist_name.x)==TRUE),]
+  nodes_table<-x[which(x$artist_name %in% liste_artistes),c("artist_name","followers_count","annotation_count_artist","nombre_songs_by_artist","views_artists","Pays","Genre","Groupe_Solo","count_feat","moyenne_date","moyenne_date_par_mois","moyenne_date_par_annee","mediane_date","mediane_date_par_mois","mediane_date_par_annee")]
+  nodes_table<-nodes_table[-which(duplicated(nodes_table$artist_name)==TRUE),]
   colnames(nodes_table)<-c("Id","followers_count","annotation_count_artist","nombre_songs_by_artist","views_artists","Pays","Genre","Groupe_Solo","count_feat","moyenne_date","moyenne_date_par_mois","moyenne_date_par_annee","mediane_date","mediane_date_par_mois","mediane_date_par_annee")
   edges_table<-featuring_network
   nodes_table$Id<-str_replace_all(nodes_table$Id,"\\s","-")
