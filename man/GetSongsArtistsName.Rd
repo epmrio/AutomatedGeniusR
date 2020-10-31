@@ -13,14 +13,14 @@ GetSongsArtistsName(x)
 A dataframe
 }
 \description{
-This function allow you to get the information aboute artists and songs from Genius API. You need to have package geniusr installed
+This function allow you to get the information about artists and songs from Genius API. You need to have package geniusr installed
 }
 \examples{
 
 \dontrun{
 
 ## Get a dataset from the following list :
-artists_list <- c("artist-1", "artist-2")
+artists_list <- c("Bruce Springsteen", "Pink Floyd")
 # Use the Function to retrieve information
 artists_info <- GetSongsArtistsName(artists_list)
 

@@ -7,7 +7,7 @@
 RetrieveSongs(x, y, feat_exclude = T)
 }
 \arguments{
-\item{x}{A dataset containing at least 3 columns : artist_id, song_name, and song_id (you can use the output of scrap_songs_artist or scrap_songs_artist_from_ID)}
+\item{x}{A dataset containing at least 3 columns : artist_id, song_name, and song_id (you can use the output of GetSongsArtistName or GetSongsArtistID). If you don't, make sure your x input is a dataframe containing at least those 3 columns}
 
 \item{y}{A list of Artists IDS from which you want to scrap all the lyrics}
 
