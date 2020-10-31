@@ -2,7 +2,7 @@
 #'
 #' Create a network of featuring collaboration between artists. The recuperation can be pretty long if there is a lot of song. For instance, to get all the lyrics from 10 artists it would take approximatly 1 hour
 #'
-#' @param x A dataset containing at least 3 columns : artist_id, song_name, and song_id (you can use the output of scrap_songs_artist or scrap_songs_artist_from_ID)
+#' @param x A dataset containing at least 3 columns : artist_id, song_name, and song_id (you can use the output of GetSongsArtistName or GetSongsArtistID). If you don't, make sure your x input is a dataframe containing at least those 3 columns
 #' @param y A list of Artists IDS from which you want to scrap all the lyrics
 #' @param feat_exclude if False, the function will get all the songs of the artist even the featuring with other artists. Default is set to True (for personnal purpose) but it could be pertinent to set it to false
 #'
@@ -13,7 +13,7 @@
 #' \dontrun{
 #'
 #' ## all the lyrics of multiple artists :
-#' lyrics<-recuperation_chansons(corpus,list_of_artists_id,feat_exclude=F)
+#' lyrics<-RetreiveSongs(corpus,list_of_artists_id,feat_exclude=F)
 #'
 #' }
 #'
@@ -22,7 +22,7 @@
 # X correspond à un data frame récupéré par les fonction de AutomatedGeniusR qui comporte une colonne id d'artiste, 
 # une colonne Chanson et une colone id chanson. Y correspond à une liste d'ID d'artistes et la fonction feat_exclude exclu les feat de la récup
 # (par défaut == TRUE)
-recuperation_chansons <- function(x,y,feat_exclude=T) {
+RetrieveSongs <- function(x,y,feat_exclude=T) {
   require(geniusr)
   df_final<-as.data.frame(matrix(0,nrow = 0,ncol = 6))
   colnames(df_final)<-c("line","section_name","section_artist","song_name","artist_name","song_id")
