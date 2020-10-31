@@ -2,7 +2,7 @@
 #'
 #' Create a network of featuring collaboration between artists. The recuperation can be pretty long if there is a lot of song. For instance, to get all the lyrics from 10 artists it would take approximatly 1 hour
 #'
-#' @param x A dataset containing at least 3 columns : artist_id, song_name, and song_id (you can use the output of scrap_songs_artist or scrap_songs_artist_from_ID)
+#' @param x A dataset containing at least 3 columns : artist_id, song_name, and song_id (you can use the output of GetSongsArtistName or GetSongsArtistID). If you don't, make sure your x input is a dataframe containing at least those 3 columns
 #' @param y A list of Artists IDS from which you want to scrap all the lyrics
 #' @param feat_exclude if False, the function will get all the songs of the artist even the featuring with other artists. Default is set to True (for personnal purpose) but it could be pertinent to set it to false
 #'
